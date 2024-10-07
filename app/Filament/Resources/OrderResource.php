@@ -26,6 +26,8 @@ use App\Filament\Resources\OrderResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\OrderResource\RelationManagers;
 use Filament\Forms\Components\Hidden;
+use Filament\Tables\Columns\SelectColumn;
+use Filament\Tables\Columns\TextColumn;
 
 class OrderResource extends Resource
 {
@@ -121,7 +123,24 @@ class OrderResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('users.name')->label('Customer')->sortable()->searchable(),
+                TextColumn::make('grand_total')->numeric()->sortable()->money('INR'),
+                TextColumn::make('payment_method')->sortable()->searchable(),
+                TextColumn::make('payment_status')->sortable()->searchable(),
+                TextColumn::make('currency')->sortable()->searchable(),
+                TextColumn::make('shipping_method')->sortable()->searchable(),
+
+                SelectColumn::make('status')->options([
+
+                    'new' => 'New',
+                    'processing' => 'Processing',
+                    'shipped' => 'Shipped',
+                    'delivered' => 'Delivered',
+                    'cancelled' => 'Cancelled',
+                ])->sortable()->searchable(),
+
+                TextColumn::make('created_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('updated_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
@@ -142,6 +161,16 @@ class OrderResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+
+    public static function getNavigationBadgeColor(): string|array|null
+    {
+        return static::getModel()::count() > 10 ? 'success': 'danger';
     }
 
     public static function getPages(): array
