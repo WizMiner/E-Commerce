@@ -20,7 +20,10 @@ class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
+    //Setting global search result name on admin dashboard
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
+
+    protected static ?string $recordTitleAttribute = 'name';
 
     public static function form(Form $form): Form
     {
