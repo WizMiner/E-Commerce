@@ -25,6 +25,9 @@ class UserResource extends Resource
     //Setting global search result name on admin dashboard
     protected static ?string $recordTitleAttribute = 'name';
 
+    //Sorting navigation items
+    protected static ?int $navigationSort = 1;
+
     public static function form(Form $form): Form
     {
         return $form

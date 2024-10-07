@@ -41,6 +41,9 @@ class BrandResource extends Resource
     //Setting global search result name on admin dashboard
     protected static ?string $recordTitleAttribute = 'name';
 
+    //Sorting navigation items
+    protected static ?int $navigationSort = 2;
+
     public static function form(Form $form): Form
     {
         return $form
