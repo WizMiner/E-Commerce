@@ -20,9 +20,9 @@ class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    //Setting global search result name on admin dashboard
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
 
+    //Setting global search result name on admin dashboard
     protected static ?string $recordTitleAttribute = 'name';
 
     public static function form(Form $form): Form
@@ -67,6 +67,11 @@ class UserResource extends Resource
         return [
             OrdersRelationManager::class
         ];
+    }
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['name', 'email'];
     }
 
     public static function getPages(): array
