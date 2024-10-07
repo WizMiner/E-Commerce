@@ -6,16 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     @livewireStyles
-    @vite(['resources/css/app.css, resources/js/app.js'])
     <title>{{ $title ?? 'MARKETING' }}</title>
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+
 </head>
 
 <body class="bg-slate-200 dark:bg-slate-700">
+    @livewire('Partial.navbr')
+
     <main>
     {{ $slot }}
     </main>
 
-    @livewireScriptConfig
+    @livewire('Partial.footer')
+    @livewireScripts
 </body>
 
 </html>
