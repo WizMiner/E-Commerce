@@ -1,5 +1,9 @@
 <?php
 
+use App\Livewire\Auth\ForgotPage;
+use App\Livewire\Auth\LoginPage;
+use App\Livewire\Auth\RegisterPage;
+use App\Livewire\Auth\ResetPasswordPage;
 use App\Livewire\CartPage;
 use App\Livewire\CategoriesPage;
 use App\Livewire\CheckoutPage;
@@ -19,3 +23,7 @@ Route::get('/checkout', CheckoutPage::class);
 Route::get('/my-orders', MyOrdersPage::class);
 Route::get('/my-orders/{order}', MyOrderDetailPage::class);
 
+Route::get('/login', LoginPage::class);
+Route::get('/register', RegisterPage::class);
+Route::get('/forgot', ForgotPage::class);
+Route::get('/reset', ResetPasswordPage::class);
