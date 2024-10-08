@@ -2,12 +2,26 @@
 
 namespace App\Livewire;
 
+use App\Models\Product;
+use Livewire\Attributes\Title;
 use Livewire\Component;
+
+#[Title('products Detail page - Marketing')]
 
 class ProductDetailPage extends Component
 {
-    public function render()
+    public $slug;
+
+    public function mount($slug){
+
+        $this->slug = $slug;
+    }
+
+
+        public function render()
     {
-        return view('livewire.product-detail-page');
+        return view('livewire.product-detail-page', [
+            'product' => Product::where('slug', $this->slug)->firstOrFail(),
+        ]);
     }
 }

@@ -9,7 +9,7 @@
                 <div>
                     <h1
                         class="block text-3xl font-bold text-gray-800 sm:text-4xl lg:text-6xl lg:leading-tight dark:text-white">
-                        Start your journey with <span class="text-blue-600">DCodeMania</span></h1>
+                        Start your journey with <span class="text-blue-600">E-Commerce</span></h1>
                     <p class="mt-3 text-lg text-gray-800 dark:text-gray-400">Purchase wide varities of electronics
                         products like Smartphones, Laptops, Smartwatches, Television and many more.</p>
 
