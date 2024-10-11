@@ -5,13 +5,14 @@
                 <div class="w-full pr-2 lg:w-1/4 lg:block">
                     <div class="p-4 mb-5 bg-white border border-gray-200 dark:border-gray-900 dark:bg-gray-900">
                         <h2 class="text-2xl font-bold dark:text-gray-400"> Categories</h2>
+                        {{-- {{ json_encode($selected_categories) }} --}}
                         <div class="w-16 pb-2 mb-6 border-b border-rose-600 dark:border-gray-400"></div>
                         <ul>
                             @foreach ($categories as $category)
 
                             <li wire:key="{{ $category->id }}" class="mb-4">
                                 <label for="{{ $category->slug }}" class="flex items-center dark:text-gray-400 ">
-                                    <input type="checkbox" id="{{ $category->slug }}" value="{{ $category->id }}" class="w-4 h-4 mr-2">
+                                    <input type="checkbox" wire:model.live="selected_categories" id="{{ $category->slug }}" value="{{ $category->id }}" class="w-4 h-4 mr-2">
                                     <span class="text-lg">{{ $category->name }}</span>
                                 </label>
                             </li>
@@ -26,7 +27,7 @@
                             @foreach ($brands as $brand)
                             <li wire:key="{{ $brand->id }}" class="mb-4">
                                 <label for="{{ $brand->slug }}" class="flex items-center dark:text-gray-300">
-                                    <input type="checkbox" id="{{ $brand->slug }}" value="{{ $brand->id }}" class="w-4 h-4 mr-2">
+                                    <input type="checkbox" wire:model.live="selected_brands" id="{{ $brand->slug }}" value="{{ $brand->id }}" class="w-4 h-4 mr-2">
                                     <span class="text-lg dark:text-gray-400">{{ $brand->name }}</span>
                                 </label>
                             </li>
@@ -38,14 +39,14 @@
                         <div class="w-16 pb-2 mb-6 border-b border-rose-600 dark:border-gray-400"></div>
                         <ul>
                             <li class="mb-4">
-                                <label for="" class="flex items-center dark:text-gray-300">
-                                    <input type="checkbox" class="w-4 h-4 mr-2">
-                                    <span class="text-lg dark:text-gray-400">In Stock</span>
+                                <label for="featured" class="flex items-center dark:text-gray-300">
+                                    <input type="checkbox" id="featured" wire:model.live="featured" value="1" class="w-4 h-4 mr-2">
+                                    <span class="text-lg dark:text-gray-400">Featured Products</span>
                                 </label>
                             </li>
                             <li class="mb-4">
-                                <label for="" class="flex items-center dark:text-gray-300">
-                                    <input type="checkbox" class="w-4 h-4 mr-2">
+                                <label for="on_sale" class="flex items-center dark:text-gray-300">
+                                    <input type="checkbox" id="on_sale" wire:model.live="on_sale" value="1" class="w-4 h-4 mr-2">
                                     <span class="text-lg dark:text-gray-400">On Sale</span>
                                 </label>
                             </li>
@@ -56,12 +57,15 @@
                         <h2 class="text-2xl font-bold dark:text-gray-400">Price</h2>
                         <div class="w-16 pb-2 mb-6 border-b border-rose-600 dark:border-gray-400"></div>
                         <div>
-                            <input type="range"
+                            <div class="font-semibold">
+                                {{ Number::currency($price_range, 'INR') }}
+                            </div>
+                            <input type="range" wire:model.live="price_range"
                                 class="w-full h-1 mb-4 bg-blue-100 rounded appearance-none cursor-pointer"
-                                max="500000" value="100000" step="100000">
+                                max="500000" value="300000" step="1000">
                             <div class="flex justify-between ">
-                                <span class="inline-block text-lg font-bold text-blue-400 ">&#8377; 1000</span>
-                                <span class="inline-block text-lg font-bold text-blue-400 ">&#8377; 500000</span>
+                                <span class="inline-block text-lg font-bold text-blue-400 "> {{ Number::currency(100, 'INR') }} </span>
+                                <span class="inline-block text-lg font-bold text-blue-400 ">{{ Number::currency(500000, 'INR') }}</span>
                             </div>
                         </div>
                     </div>
@@ -71,10 +75,10 @@
                         <div
                             class="items-center justify-between hidden px-3 py-2 bg-gray-100 md:flex dark:bg-gray-900 ">
                             <div class="flex items-center justify-between">
-                                <select name="" id=""
+                                <select name="" wire:model.live="sort"
                                     class="block w-40 text-base bg-gray-100 cursor-pointer dark:text-gray-400 dark:bg-gray-900">
-                                    <option value="">Sort by latest</option>
-                                    <option value="">Sort by Price</option>
+                                    <option value="latest">Sort by latest</option>
+                                    <option value="price">Sort by Price</option>
                                 </select>
                             </div>
                         </div>
