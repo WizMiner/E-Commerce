@@ -51,7 +51,7 @@
 
       <div class="grid mt-5 sm:mt-12 gap-y-2 sm:gap-y-0 sm:flex sm:justify-between sm:items-center">
         <div class="flex items-center justify-between">
-          <p class="text-sm text-gray-400">© 2024 DCodeMania. All rights reserved.</p>
+          <p class="text-sm text-gray-400">© 2024 Minte. All rights reserved.</p>
         </div>
         <!-- End Col -->
 
