@@ -33,8 +33,7 @@ class RegisterPage extends Component
         ]);
 
         //login user
-        auth()->login($user);
-
+        \Illuminate\Support\Facades\Auth::login($user);
         //redirect to home page
         return redirect()->intended();
     }

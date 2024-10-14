@@ -24,7 +24,7 @@ Route::get('/products/{slug}', ProductDetailPage::class);
 
 Route::middleware('guest')->group(function(){
 
-    Route::get('/login', LoginPage::class);
+    Route::get('/login', LoginPage::class)->name('login');
     Route::get('/register', RegisterPage::class);
     Route::get('/forgot', ForgotPage::class);
     Route::get('/reset', ResetPasswordPage::class);
@@ -34,8 +34,8 @@ Route::middleware('guest')->group(function(){
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/logout', function(){
-        auth()->logout();
+    Route::get('/logout', function() {
+        \Illuminate\Support\Facades\Auth::logout();
         return redirect('/');
     });
     Route::get('/checkout', CheckoutPage::class);
