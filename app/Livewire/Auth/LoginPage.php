@@ -28,7 +28,7 @@ class LoginPage extends Component
         }
 
         // Redirect to home page after successful login
-        return redirect('livewire.home-page');
+        return redirect('http://127.0.0.1:8000/');
     }
 
     public function render()
