@@ -80,7 +80,7 @@ class OrderResource extends Resource
                         ]),
 
                         select::make('currency')->options([
-                            'inr' => 'INR',
+                            'inr' => 'ETH',
                             'usd' => 'USD',
                             'eur' => 'EUR',
                             'gbp' => 'GBP',
@@ -115,7 +115,7 @@ class OrderResource extends Resource
                                 $total += $get("items.{$key}.total_amount");
                             }
                             $set('grand_total', $total);
-                            return Number::currency($total, 'INR');
+                            return Number::currency($total, 'ETH');
                         }),
                         Hidden::make('grand_total')->default(0)
                     ])
@@ -129,7 +129,7 @@ class OrderResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('users.name')->label('Customer')->sortable()->searchable(),
-                TextColumn::make('grand_total')->numeric()->sortable()->money('INR'),
+                TextColumn::make('grand_total')->numeric()->sortable()->money('ETH'),
                 TextColumn::make('payment_method')->sortable()->searchable(),
                 TextColumn::make('payment_status')->sortable()->searchable(),
                 TextColumn::make('currency')->sortable()->searchable(),

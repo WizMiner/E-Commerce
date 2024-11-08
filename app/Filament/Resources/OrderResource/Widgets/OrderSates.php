@@ -15,7 +15,7 @@ class OrderSates extends BaseWidget
             Stat::make('New Order', Order::query()->where('status', 'new')->count()),
             Stat::make('Order Processing', Order::query()->where('status', 'processing')->count()),
             Stat::make('Order Shipped', Order::query()->where('status', 'shipped')->count()),
-            Stat::make('Average price', Number::currency(Order::query()->avg('grand_total'), 'INR')),
+            Stat::make('Average price', Number::currency(Order::query()->avg('grand_total'), 'ETH')),
         ];
     }
 }

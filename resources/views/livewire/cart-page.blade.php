@@ -24,7 +24,7 @@
                                         <span class="font-semibold">{{ $item['name'] }}</span>
                                     </div>
                                 </td>
-                                <td class="py-4">{{ Number::currency($item['unit_amount'], 'INR') }} </td>
+                                <td class="py-4">{{ Number::currency($item['unit_amount'], 'ETH') }} </td>
                                 <td class="py-4">
                                     <div class="flex items-center">
                                         <div class="flex items-center quantity-buttons">
@@ -40,7 +40,7 @@
                                         </div>
 
                                 </td>
-                                <td class="py-4">{{ Number::currency($item['total_amount'], 'INR') }}</td>
+                                <td class="py-4">{{ Number::currency($item['total_amount'], 'ETH') }}</td>
                                 <td>
                                     <button wire:click='removeItem({{ $item['product_id'] }})'
                                         class="px-3 py-1 border-2 rounded-lg bg-slate-300 border-slate-400 hover:bg-red-500 hover:text-white hover:border-red-700"><span
@@ -72,20 +72,20 @@
                     <h2 class="mb-4 text-lg font-semibold">Summary</h2>
                     <div class="flex justify-between mb-2">
                         <span>Sum Total</span>
-                        <span>{{ Number::currency($grand_total, 'INR') }}</span>
+                        <span>{{ Number::currency($grand_total, 'ETH') }}</span>
                     </div>
                     <div class="flex justify-between mb-2">
                         <span>Taxes</span>
-                        <span>{{ Number::currency(0, 'INR') }}</span>
+                        <span>{{ Number::currency(0, 'ETH') }}</span>
                     </div>
                     <div class="flex justify-between mb-2">
                         <span>Shipping</span>
-                        <span>{{ Number::currency(0, 'INR') }}</span>
+                        <span>{{ Number::currency(0, 'ETH') }}</span>
                     </div>
                     <hr class="my-2">
                     <div class="flex justify-between mb-2">
                         <span class="font-semibold">Grand Total</span>
-                        <span class="font-semibold">{{ Number::currency($grand_total, 'INR') }}</span>
+                        <span class="font-semibold">{{ Number::currency($grand_total, 'ETH') }}</span>
                     </div>
                     @if ($cart_items)
                         <a href="/checkout" class="block w-full mt-4 text-center text-white bg-blue-500 rounded-lg y-2 bpx-4">Checkout</a>

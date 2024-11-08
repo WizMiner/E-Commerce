@@ -177,7 +177,7 @@
                             Sub Total
                         </span>
                         <span>
-                            {{ Number::currency($grand_total, 'INR') }}
+                            {{ Number::currency($grand_total, 'ETH') }}
                         </span>
                     </div>
                     <div class="flex justify-between mb-2 font-serif">
@@ -185,7 +185,7 @@
                             Taxes
                         </span>
                         <span>
-                            {{ Number::currency(0, 'INR') }}
+                            {{ Number::currency(0, 'ETH') }}
                         </span>
                     </div>
                     <div class="flex justify-between mb-2 font-serif">
@@ -193,7 +193,7 @@
                             Shipping Cost
                         </span>
                         <span>
-                            {{ Number::currency(0, 'INR') }}
+                            {{ Number::currency(0, 'ETH') }}
                         </span>
                     </div>
                     <hr class="h-1 my-4 rounded bg-slate-400">
@@ -202,7 +202,7 @@
                             Grand Total
                         </span>
                         <span>
-                            {{ Number::currency($grand_total, 'INR') }}
+                            {{ Number::currency($grand_total, 'ETH') }}
                         </span>
                     </div>
                     </hr>
@@ -234,7 +234,7 @@
                                     </div>
                                     <div
                                         class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                        {{ Number::currency($cart['total_amount'], 'INR') }}
+                                        {{ Number::currency($cart['total_amount'], 'ETH') }}
                                     </div>
                                 </div>
                             </li>

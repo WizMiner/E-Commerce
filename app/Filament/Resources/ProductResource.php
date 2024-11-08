@@ -72,7 +72,7 @@ class ProductResource extends Resource
 
                 Group::make()->schema([
                     Section::make('price')->schema([
-                        TextInput::make('price')->numeric()->required()->prefix('INR')
+                        TextInput::make('price')->numeric()->required()->prefix('ETH')
                     ]),
 
                     Section::make('Associations')->schema([
@@ -97,7 +97,7 @@ class ProductResource extends Resource
             ->columns([
                 TextColumn::make('name')->searchable(),
                 TextColumn::make('category.name')->sortable(),
-                TextColumn::make('price')->money('INR')->sortable(),
+                TextColumn::make('price')->money('ETH')->sortable(),
                 IconColumn::make('on_sale')->boolean(),
                 IconColumn::make('in_stock')->boolean(),
                 IconColumn::make('is_active')->boolean(),

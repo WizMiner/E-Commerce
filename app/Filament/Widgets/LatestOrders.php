@@ -27,7 +27,7 @@ class LatestOrders extends BaseWidget
                 TextColumn::make('id')->label('Order ID')->searchable(),
                 TextColumn::make('users.name'),
 
-                TextColumn::make('grand_total')->money('INR'),
+                TextColumn::make('grand_total')->money('ETH'),
 
                 TextColumn::make('status')->badge()->color(fn (string $state): string => match($state){
                     'new' => 'info',
