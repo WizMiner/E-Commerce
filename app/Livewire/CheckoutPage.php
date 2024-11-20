@@ -6,9 +6,11 @@ use Stripe\Stripe;
 use App\Models\Order;
 use App\Models\Address;
 use Livewire\Component;
+use App\Mail\OrderPlaced;
 use Stripe\Checkout\Session;
 use Livewire\Attributes\Title;
 use App\Helpers\CartManagement;
+use Illuminate\Support\Facades\Mail;
 
 #[Title('checkout')]
 class CheckoutPage extends Component
@@ -125,6 +127,7 @@ class CheckoutPage extends Component
 
         // Clear cart items and redirect user
         CartManagement::clearCartItems();
+        Mail::to(request()->user())->send(new OrderPlaced($order));
         return redirect($redirect_url);
     }
 

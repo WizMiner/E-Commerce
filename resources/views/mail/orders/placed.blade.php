@@ -1,10 +1,10 @@
 <x-mail::message>
-# Introduction
+# Order placed successfully!
 
-The body of your message.
+Thank you for your order. your order number is: {{ $order->id }}.
 
-<x-mail::button :url="''">
-Button Text
+<x-mail::button :url="$url">
+View order
 </x-mail::button>
 
 Thanks,<br>
