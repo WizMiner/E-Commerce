@@ -21,13 +21,27 @@ class Order extends Model
         'notes',
     ];
 
-    public function user(){
-        return $this->hasMany(User::class);
+      /**
+     * An order belongs to a user.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class); // Ensure this returns a belongsTo relationship
     }
-    public function items(){
+
+    /**
+     * An order has many items.
+     */
+    public function items()
+    {
         return $this->hasMany(OrderItem::class);
     }
-    public function address(){
-        return $this->hasMany(Address::class);
+
+    /**
+     * An order has one address.
+     */
+    public function address()
+    {
+        return $this->hasOne(Address::class);
     }
 }
