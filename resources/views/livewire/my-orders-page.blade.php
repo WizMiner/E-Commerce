@@ -1,4 +1,4 @@
-<div class="w-full max-w-[85rem] py-10 px-4 sm:px-6 lg:px-8 mx-auto">
+<div class="w-full max-w-[85rem] py-10 px-4 sm:px-6 lg:px-8 mx-auto" x-data="paginationHandler()">
     <h1 class="text-4xl font-bold text-slate-500">My Orders</h1>
     <div class="flex flex-col bg-white p-5 rounded mt-4 shadow-lg">
         <div class="-m-1.5 overflow-x-auto">
@@ -25,67 +25,100 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="odd:bg-white even:bg-gray-100 dark:odd:bg-slate-900 dark:even:bg-slate-800">
-                                <td
-                                    class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
-                                    20</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                                    18-02-2024</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200"><span
-                                        class="bg-orange-500 py-1 px-3 rounded text-white shadow">Pending</span></td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200"><span
-                                        class="bg-green-500 py-1 px-3 rounded text-white shadow">Paid</span></td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                                    12,000.00</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                                    <a href="#"
-                                        class="bg-slate-600 text-white py-2 px-4 rounded-md hover:bg-slate-500">View
-                                        Details</a>
-                                </td>
-                            </tr>
+                            @foreach ($orders as $order)
+                                @php
+                                    $status = '';
+                                    $payment_status = '';
+                                    if ($order->status == 'new') {
+                                        $status =
+                                            '<span class="bg-blue-500 py-1 px-3 rounded text-white shadow"> New </span>';
+                                    }
+                                    if ($order->status == 'processing') {
+                                        $status =
+                                            '<span class="bg-yellow-500 py-1 px-3 rounded text-white shadow"> Processing </span>';
+                                    }
+                                    if ($order->status == 'shipped') {
+                                        $status =
+                                            '<span class="bg-green-500 py-1 px-3 rounded text-white shadow"> Shipped </span>';
+                                    }
+                                    if ($order->status == 'delivered') {
+                                        $status =
+                                            '<span class="bg-green-700 py-1 px-3 rounded text-white shadow"> Delivered </span>';
+                                    }
+                                    if ($order->status == 'cancelled') {
+                                        $status =
+                                            '<span class="bg-red-500 py-1 px-3 rounded text-white shadow"> Cancelled </span>';
+                                    }
 
-                            <tr class="odd:bg-white even:bg-gray-100 dark:odd:bg-slate-900 dark:even:bg-slate-800">
-                                <td
-                                    class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
-                                    20</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                                    18-02-2024</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200"><span
-                                        class="bg-orange-500 py-1 px-3 rounded text-white shadow">Pending</span></td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200"><span
-                                        class="bg-green-500 py-1 px-3 rounded text-white shadow">Paid</span></td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                                    12,000.00</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                                    <a href="#"
-                                        class="bg-slate-600 text-white py-2 px-4 rounded-md hover:bg-slate-500">View
-                                        Details</a>
-                                </td>
-                            </tr>
+                                    // payment_status
+                                    if ($order->payment_status == 'pending') {
+                                        $payment_status =
+                                            '<span class="bg-blue-500 py-1 px-3 rounded text-white shadow"> Pending </span>';
+                                    }
+                                    if ($order->payment_status == 'paid') {
+                                        $payment_status =
+                                            '<span class="bg-green-600 py-1 px-3 rounded text-white shadow"> Paid </span>';
+                                    }
+                                    if ($order->payment_status == 'failed') {
+                                        $payment_status =
+                                            '<span class="bg-red-600 py-1 px-3 rounded text-white shadow"> Failed </span>';
+                                    }
 
-                            <tr class="odd:bg-white even:bg-gray-100 dark:odd:bg-slate-900 dark:even:bg-slate-800">
-                                <td
-                                    class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
-                                    20</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                                    18-02-2024</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200"><span
-                                        class="bg-orange-500 py-1 px-3 rounded text-white shadow">Pending</span></td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200"><span
-                                        class="bg-green-500 py-1 px-3 rounded text-white shadow">Paid</span></td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                                    12,000.00</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                                    <a href="#"
-                                        class="bg-slate-600 text-white py-2 px-4 rounded-md hover:bg-slate-500">View
-                                        Details</a>
-                                </td>
-                            </tr>
+                                @endphp
 
+                                <tr wire:key='{{ $order->id }}'
+                                    class="odd:bg-white even:bg-gray-100 dark:odd:bg-slate-900 dark:even:bg-slate-800">
+                                    <td
+                                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
+                                        {{ $order->id }}
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
+                                        {{ $order->created_at->format('d-m-y') }}
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
+                                        {!! $status !!}
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
+                                        {!! $payment_status !!}
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
+                                        {{ Number::currency($order->grand_total, 'INR') }}
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
+                                        <a href="/my-orders/{{ $order->id }}"
+                                            class="bg-slate-600 text-white py-2 px-4 rounded-md hover:bg-slate-500">View
+                                            Details</a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
+            {{ $orders->links() }}
         </div>
     </div>
 </div>
+
+<script>
+    function paginationHandler() {
+        return {
+            init() {
+                this.updateItemsPerPage();
+                window.addEventListener('resize', this.updateItemsPerPage.bind(this));
+            },
+            updateItemsPerPage() {
+                const screenWidth = window.innerWidth;
+                let itemsCount = 10; // Default
+
+                if (screenWidth < 640) {
+                    itemsCount = 5; // Mobile
+                } else if (screenWidth < 1024) {
+                    itemsCount = 8; // Tablet
+                }
+
+                @this.set('itemsPerPage', itemsCount); // Call Livewire method
+            }
+        }
+    }
+</script>
